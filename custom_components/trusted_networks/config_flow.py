@@ -94,12 +94,19 @@ class TrustedNetworksConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
                         continue
 
                     homeassistant_content.append(f"# {line}")  # **注释掉 auth_providers**
+                    modified = True
                     continue
                 else:
                     new_lines.append(line)  # 其他部分正常加入
 
             # **如果 homeassistant: 在最后，没有其他顶级字段，直接添加 auth_providers**
             if inside_homeassistant:
+                homeassistant_content.extend(self.get_auth_providers_config(user_id))
+                new_lines.extend(homeassistant_content)
+                modified = True
+            
+            if(not modified):
+                homeassistant_content.extend("auth_header:\n")
                 homeassistant_content.extend(self.get_auth_providers_config(user_id))
                 new_lines.extend(homeassistant_content)
                 modified = True
