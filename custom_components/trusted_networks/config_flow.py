@@ -106,7 +106,7 @@ class TrustedNetworksConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
                 modified = True
             
             if(not modified):
-                homeassistant_content.extend("auth_header:\n")
+                homeassistant_content.extend("\n\nauth_header:\n")
                 homeassistant_content.extend(self.get_auth_providers_config(user_id))
                 new_lines.extend(homeassistant_content)
                 modified = True
