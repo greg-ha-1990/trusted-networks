@@ -1,0 +1,10 @@
+{
+    "domain": "trusted_networks",
+    "name": "Trusted Networks Configurator",
+    "version": "1.0.0",
+    "documentation": "https://www.example.com/",
+    "dependencies": [],
+    "codeowners": ["@your_github"],
+    "config_flow": true,
+    "requirements": []
+  }
